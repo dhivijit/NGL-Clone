@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Question page">
+  <title>Question</title>
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/style.css?v=4">
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/main.js?v=2"></script>
+  <script src="../js/html2canvas.min.js"></script>
+
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .centershape {
+      background: rgba(255, 255, 255, 0.3);
+      position: absolute;
+      width: 85%;
+      height: 85%;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      border-radius: 0.4rem;
+    }
+
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #questionblock {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      min-height: 100px;
+      color: black;
+      background-color: aliceblue;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  </style>
+
+  <link rel="icon" type="image/x-icon" href="../media/ngl.ico">
+  <!-- Custom styles for this template -->
+  <link href="../css/signin.css" rel="stylesheet">
+</head>
+
+<body class="text-center" style="display: flex;align-items: center;justify-content: center;">
+  <main class="w-100 m-auto">
+    <div id="totalquestionblock" style="position:absolute;top:3em;left:50%;transform:translateX(-50%);">
+      <div class="bubble" style="width: 300px;margin-top: 0;">
+        <div class="header" style="border-radius:5px 5px 0 0;background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #ff8d10, #ec1187);display: flex;
+          align-items: center;
+          justify-content: center;">
+          <div>
+            Send me anonymous messages!
+          </div>
+        </div>
+        <div class="textarea-container">
+          <div id="questionblock">
+            <%- Question %>
+          </div>
+        </div>
+      </div>
+
+  </main>
+  <div id="savingblock" style="position: absolute;top:40%;left:50%;transform: translateX(-50%);">
+    <input type="button" class="btn btn-danger" id="btnSave" value="Save PNG" />
+    <% if (QuestionData.unread=true) { %>
+      <form action="/delete" method="post"><br>
+        <input type="hidden" name="id" value="<%- questioncode %>">
+        <input type="submit" class="btn btn-danger" value="Delete">
+      </form>
+      <% } %>
+        <br><br>
+  </div>
+
+  <div style="position: absolute;top:60%;left:50%;transform: translateX(-50%);">
+    <button class="btn btn-info" onclick="$('#senderInfo').slideToggle('slow');">Show sender info</button>
+    <br>
+    <div id="senderInfo" style="display:none;">
+      <br>
+      <div class="card" style="width: 23em;margin-bottom: 20px;">
+        <div class="card-body">
+          <h6 class="card-title">Sender info</h6>
+          <h7 class="card-subtitle mb-2 text-muted">Date: <%- QuestionData.Date %>
+          </h7><br>
+          <h7 class="card-subtitle mb-2 text-muted">UTC Time: <%- QuestionData.Time %>
+          </h7><br>
+          <h7 class="card-subtitle mb-2 text-muted">IP: <%- QuestionData.userData.IpAddress %>
+          </h7><br>
+          <h7 class="card-subtitle mb-2 text-muted">User agent: <%- QuestionData.userData.source %>
+          </h7>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    function download(canvas, filename) {
+      /// create an "off-screen" anchor tag
+      var lnk = document.createElement('a'), e;
+      /// the key here is to set the download attribute of the a tag
+      lnk.download = filename;
+      /// convert canvas content to data-uri for link. When download
+      /// attribute is set the content pointed to by link will be
+      /// pushed as "download" in HTML5 capable browsers
+      lnk.href = canvas.toDataURL("image/png;base64");
+
+      /// create a "fake" click-event to trigger the download
+      if (document.createEvent) {
+        e = document.createEvent("MouseEvents");
+        e.initMouseEvent("click", true, true, window,
+          0, 0, 0, 0, 0, false, false, false,
+          false, 0, null);
+
+        lnk.dispatchEvent(e);
+      } else if (lnk.fireEvent) {
+        lnk.fireEvent("onclick");
+      }
+    }
+
+    $(function () {
+      $("#btnSave").click(function () {
+        $("#outputimage").empty();
+        html2canvas(document.getElementById('totalquestionblock')).then(function (canvas) {
+          canvas.setAttribute("style", "border-radius:2rem;");
+          download(canvas, '<%-questioncode%>.png');
+        });
+      });
+    });
+
+  </script>
+</body>
+
+</html>

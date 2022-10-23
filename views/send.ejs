@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css?v=4">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/main.js?v=2"></script>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/x-icon" href="../media/ngl.ico">
+    <script></script>
+</head>
+
+<body>
+    <div class="container">
+        <form class="form" method="post" action="/sendChallenge">
+            <div class="bubble">
+                <div class="header">
+                    <div class="pfp-container"><img class="pfp"
+                            src="media/pfp.jpg">
+                    </div>
+                    <div class="user-container">
+                        <div class="username">@<%- username %></div>
+                        <div class="prompt">send me anonymous messages!</div>
+                    </div>
+                </div>
+                <div class="textarea-container">
+                    <div class="top-right-corner"></div>
+                    <div class="top-left-corner"></div>
+                    <div class="dice-button">🎲</div><textarea placeholder="send me anonymous messages…" name="question"
+                        autocomplete="off" maxlength="300"></textarea>
+            </div>
+            <div class="anonymous-tooltip">🔒 anonymous q&amp;a</div><button class="submit" type="submit"
+                style="display:none">Send!</button>
+        </form>
+    </div>
+    <div class="bottom-container">
+        <h2 class="download-prompt">👇 <span class="clickCount">216</span> people just tapped the button👇 </h2><a
+            class="button download-link pulse" href="https://apps.apple.com/us/app/ask-fun/id1596550932"
+            target="_blank">Get your own messages!</a>
+        <div class="tos-privacy"><a class="tos" href="https://ngl.link/p/terms">Terms</a><a class="privacy"
+                href="https://ngl.link/p/privacy">Privacy</a></div>
+    </div>
+</body>
+
+</html>
