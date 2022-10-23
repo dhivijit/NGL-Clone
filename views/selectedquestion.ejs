@@ -121,14 +121,15 @@
     <% if (QuestionData.unread=true) { %>
       <form action="/delete" method="post"><br>
         <input type="hidden" name="id" value="<%- questioncode %>">
-        <input type="submit" class="btn btn-danger" value="Delete">
+        <input type="submit" onclick="result=confirm('Deleting this question');if(!result){event.preventDefault();}" class="btn btn-danger" value="Delete">
       </form>
       <% } %>
         <br><br>
   </div>
 
   <div style="position: absolute;top:60%;left:50%;transform: translateX(-50%);">
-    <button class="btn btn-info" onclick="$('#senderInfo').slideToggle('slow');">Show sender info</button>
+    <button class="btn btn-info" onclick="$('#senderInfo').slideToggle('slow');textchange();"><span
+        id="showhide">Show</span> sender info</button>
     <br>
     <div id="senderInfo" style="display:none;">
       <br>
@@ -150,6 +151,13 @@
 
 
   <script>
+    function textchange() {
+      if ($("#showhide").text() == "Show") {
+        $("#showhide").text("Hide");
+      } else {
+        $("#showhide").text("Show");
+      }
+    }
     function download(canvas, filename) {
       /// create an "off-screen" anchor tag
       var lnk = document.createElement('a'), e;
