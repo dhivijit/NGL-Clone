@@ -15,9 +15,6 @@
     "url": "https://github.com/dhivijit/NGL-Clone/issues"
   },
   "homepage": "https://github.com/dhivijit/NGL-Clone#readme",
-  "devDependencies": {
-    "nodemon": "~2.0.20"
-  },
   "dependencies": {
     "body-parser": "^1.20.0",
     "cookie-parser": "^1.4.6",
@@ -31,7 +28,8 @@
     "https": "^1.0.0",
     "jsdom": "^20.0.0",
     "path": "^0.12.7",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "nodemon": "~2.0.20"
   },
   "engines": {
     "node": "14.x"
