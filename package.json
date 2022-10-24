@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is a clone to NGL which can be hosted and you own your data",
   "scripts": {
-    "start":"nodemon app.js"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/dhivijit/NGL-Clone#readme",
   "devDependencies": {
-    "nodemon": "~2.0.20",
+    "nodemon": "~2.0.20"
   },
   "dependencies": {
     "body-parser": "^1.20.0",
