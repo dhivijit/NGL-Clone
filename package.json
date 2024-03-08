@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is a clone to NGL which can be hosted and you own your data",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
