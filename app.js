@@ -106,7 +106,7 @@ app.post("/sendChallenge", function (req, res) {
 });
 
 app
-  .route("/Admingadipage")
+  .route("/adminpage")
   .get((req, res) => {
     // for the admin page where the questions will be displayed
     //check for cookie when user opens the website then directly redirect to the admin page
@@ -176,7 +176,7 @@ app.post("/deletecookietoken", (req, res) => {
     path.resolve(__dirname, "data/generatedtokens.json"),
     JSON.stringify(genTokens)
   );
-  res.redirect("/Admingadipage");
+  res.redirect("/adminpage");
 });
 
 app.post("/delete", (req, res) => {
@@ -186,7 +186,7 @@ app.post("/delete", (req, res) => {
       path.resolve(__dirname, "data/questions.json"),
       JSON.stringify(AllQuestions)
     );
-    res.redirect("/Admingadipage");
+    res.redirect("/adminpage");
   } else {
     res.redirect("/");
   }
